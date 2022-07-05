@@ -1,0 +1,2 @@
+left_click 652 1054
+left_click 1766 104

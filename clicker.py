@@ -2,13 +2,17 @@
 import pynput.mouse as pym
 import pynput.keyboard as pyk
 import time
+#import ctypes
+#ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 #LOGFILE_NAME = input('Enter name of input log file: ')
 LOGFILE_NAME = 'input.txt'
 #INFILE_POSITIONS = input('Enter name of file containing input file positions')
 
+LONG_SLEEP = 300
+SHORT_SLEEP = 30
 CLICK_DELAY = 0.8
-TYPE_DELAY = 0.4
+TYPE_DELAY = 0.2
 
 def string_to_button(id):
     if id == 'left_click':
@@ -29,19 +33,14 @@ def parse_char(string):
 def parse_key(string):
     return KEY_DICT[string[4:]]
 
-CLICK_DELAY /= 2
-TYPE_DELAY /= 3
-
 def click(button):
-    time.sleep(CLICK_DELAY)
     mouse.click(button)
     time.sleep(CLICK_DELAY)
 
-def type(char):
-    time.sleep(TYPE_DELAY)
-    keyboard.press(char)
-    time.sleep(TYPE_DELAY)
-    keyboard.release(char)
+def type(string):
+    parsed = parse_char(string) if string[0] == '\'' else parse_key(string)
+    keyboard.press(parsed)
+    keyboard.release(parsed)
     time.sleep(TYPE_DELAY)
 
 mouse = pym.Controller()
@@ -51,10 +50,7 @@ with open(LOGFILE_NAME) as file:
     for line in file:
         action = line.split()
         if action[0] == 'type':
-            if action[1][0] == '\'':
-                type(parse_char(action[1]))
-            elif action[1][:4] == 'Key.':
-                type(parse_key(action[1]))
+            type(action[1])
         else:
             mouse.position = (action[1], action[2])
             click(string_to_button(action[0]))

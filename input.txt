@@ -1,2 +1,23 @@
-left_click 652 1054
-left_click 1766 104
+left_click 261 20
+type 't'
+type 'h'
+type 'i'
+type 's'
+type Key.space
+type 'i'
+type 's'
+type Key.space
+type 'a'
+type 'n'
+type 'o'
+type 't'
+type 'h'
+type 'e'
+type 'r'
+type Key.space
+type 't'
+type 'e'
+type 's'
+type 't'
+type Key.enter
+left_click 460 459

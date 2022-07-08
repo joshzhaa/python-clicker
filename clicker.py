@@ -48,14 +48,10 @@ def type(string):
     keyboard.press(parsed)
     keyboard.release(parsed)
 
-def file_select(file_type):
-    return 0
-
 SPECIAL_ACTIONS = {
     'double_click' : lambda x, y: click(pym.Button.left, x, y, 2),
     'long_sleep' : lambda: time.sleep(LONG_SLEEP),
-    'short_sleep' : lambda: time.sleep(SHORT_SLEEP),
-    'file_select' : file_select
+    'short_sleep' : lambda: time.sleep(SHORT_SLEEP)
 }
 
 mouse = pym.Controller()
@@ -71,5 +67,7 @@ with open(LOGFILE_NAME) as file:
                 click(string_to_button(click_type), int(x), int(y))
             case ['special_action', action, *args]:
                 SPECIAL_ACTIONS[action](*args)
+            case ['COMMENT', *text]:
+                pass
             case _:
                 print('ERROR: Unrecognized Command')

@@ -48,14 +48,18 @@ def type(string):
     keyboard.press(parsed)
     keyboard.release(parsed)
 
-mouse = pym.Controller()
-keyboard = pyk.Controller()
+def file_select(file_type):
+    return 0
 
 SPECIAL_ACTIONS = {
     'double_click' : lambda x, y: click(pym.Button.left, x, y, 2),
     'long_sleep' : lambda: time.sleep(LONG_SLEEP),
-    'short_sleep' : lambda: time.sleep(SHORT_SLEEP)
+    'short_sleep' : lambda: time.sleep(SHORT_SLEEP),
+    'file_select' : file_select
 }
+
+mouse = pym.Controller()
+keyboard = pyk.Controller()
 
 with open(LOGFILE_NAME) as file:
     for line in file:

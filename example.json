@@ -1,0 +1,21 @@
+{
+    "type": "multiple simulation setup",
+    "time": "2022-07-11 05:07:05",
+    "jobs": [
+        {
+            "vtk": "M0",
+            "flow": "re150",
+            "mesh": {
+                "mesh_size": 0,
+                "curvature_refinement": false
+            },
+            "solver": {
+                "num_steps": 0,
+                "step_size": 0,
+                "residual_control": false,
+                "step_construction": false,
+                "influx_coefficient": 0
+            }
+        }
+    ]
+}

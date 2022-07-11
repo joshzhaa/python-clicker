@@ -1,0 +1,13 @@
+left_click 1531 19
+type 'h'
+type 'e'
+type 'l'
+type 'l'
+type 'o'
+type Key.enter
+special_action short_sleep
+left_click 458 554
+COMMENT this is a comment
+type Key.alt_l
+type Key.tab
+type Key.tab

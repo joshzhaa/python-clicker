@@ -6,8 +6,6 @@ import time
 #ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 LOGFILE_NAME = input('Enter name of input log file: ')
-#LOGFILE_NAME = 'mesh.txt'
-#INFILE_POSITIONS = input('Enter name of file containing input file positions')
 
 LONG_SLEEP = 180
 SHORT_SLEEP = 10

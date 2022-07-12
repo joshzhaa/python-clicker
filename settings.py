@@ -13,10 +13,11 @@ joblist = {
     'jobs': []
 }
 
-def add_job(vtk = 'M0', flow = 're150', mesh_size = 0, curvature_refinement = False, 
+def add_job(procedure = 'test.txt', vtk = 'M0', flow = 're150', mesh_size = 0, curvature_refinement = False, 
     num_steps = 0, step_size = 0, residual_control = False, step_construction = False, influx_coefficient = 0):
     joblist['jobs'].append(
         {
+            'procedure': procedure,
             'vtk': vtk,
             'flow': flow,
             'mesh': { 

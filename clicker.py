@@ -1,11 +1,13 @@
 #replays inputs exactly according to recorder.py text format
 import pynput.mouse as pym
 import pynput.keyboard as pyk
+import json
 import time
 #import ctypes
 #ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
-LOGFILE_NAME = input('Enter name of input log file: ')
+#JOBLIST_NAME = input('Enter name of joblist json file: ')
+JOBLIST_NAME = 'joblist.json'
 
 LONG_SLEEP = 180
 SHORT_SLEEP = 10
@@ -34,38 +36,55 @@ def parse_char(string):
 def parse_key(string):
     return KEY_DICT[string[4:]]
 
+#executes click instruction in log file
 def click(button, x, y, num = 1):
     time.sleep(CLICK_DELAY)
     mouse.position = (x, y)
     time.sleep(CLICK_DELAY / 8)
     mouse.click(button, num)
 
+#executes type instruction in log file
 def type(string):
     time.sleep(TYPE_DELAY)
     parsed = parse_char(string) if string[0] == '\'' else parse_key(string)
     keyboard.press(parsed)
     keyboard.release(parsed)
 
+#controls keyboard to type filename
+def file_select(filename):
+    if filename == 'vtk' or filename == 'flow':
+        filename = job[filename]
+    
+    for char in filename:
+        time.sleep(TYPE_DELAY)
+        keyboard.press(char)
+        keyboard.release(char)
+
+#dictionary of supported special actions
 SPECIAL_ACTIONS = {
-    'double_click' : lambda x, y: click(pym.Button.left, x, y, 2),
-    'long_sleep' : lambda: time.sleep(LONG_SLEEP),
-    'short_sleep' : lambda: time.sleep(SHORT_SLEEP)
+    'double_click': lambda x, y: click(pym.Button.left, x, y, 2),
+    'long_sleep': lambda: time.sleep(LONG_SLEEP),
+    'short_sleep': lambda: time.sleep(SHORT_SLEEP),
+    'file_select': file_select #arg can be geometries, flows, vtk, or flow
 }
 
 mouse = pym.Controller()
 keyboard = pyk.Controller()
 
-with open(LOGFILE_NAME) as file:
-    for line in file:
-        print(line)
-        match line.split():
-            case ['type', keystroke]:
-                type(keystroke)
-            case [('left_click' | 'right_click' | 'middle_click') as click_type, x, y]:
-                click(string_to_button(click_type), int(x), int(y))
-            case ['special_action', action, *args]:
-                SPECIAL_ACTIONS[action](*args)
-            case ['COMMENT', *text]:
-                pass
-            case _:
-                print('ERROR: Unrecognized Command')
+with open(JOBLIST_NAME) as joblist_file:
+    joblist = json.load(joblist_file)
+    for job in joblist['jobs']:
+        with open(job['procedure']) as procedure:
+            for line in procedure:
+                print(line)
+                match line.split():
+                    case ['type', keystroke]:
+                        type(keystroke)
+                    case [('left_click' | 'right_click' | 'middle_click') as click_type, x, y]:
+                        click(string_to_button(click_type), int(x), int(y))
+                    case ['special_action', action, *args]:
+                        SPECIAL_ACTIONS[action](*args)
+                    case ['COMMENT', *text]:
+                        pass
+                    case _:
+                        print('ERROR: Unrecognized Command')

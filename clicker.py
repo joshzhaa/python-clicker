@@ -1,8 +1,10 @@
 #replays inputs exactly according to recorder.py text format
+from re import I
 import pynput.mouse as pym
 import pynput.keyboard as pyk
 import json
 import time
+#for windows when size is not 100%
 #import ctypes
 #ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
@@ -51,11 +53,8 @@ def type(string):
     keyboard.release(parsed)
 
 #controls keyboard to type filename
-def file_select(filename):
-    if filename == 'vtk' or filename == 'flow':
-        filename = job[filename]
-    
-    for char in filename:
+def fill(arg):
+    for char in arg:
         time.sleep(TYPE_DELAY)
         keyboard.press(char)
         keyboard.release(char)
@@ -65,17 +64,26 @@ SPECIAL_ACTIONS = {
     'double_click': lambda x, y: click(pym.Button.left, x, y, 2),
     'long_sleep': lambda: time.sleep(LONG_SLEEP),
     'short_sleep': lambda: time.sleep(SHORT_SLEEP),
-    'file_select': file_select #arg can be geometries, flows, vtk, or flow
+    'fill': lambda x: fill(job[x]) if x == 'vtk' or x == 'flow' else fill(x) #arg can be geometries, flows, vtk, or flow
 }
+
+quit_flag = False
+def on_press(key):
+    global quit_flag
+    if key == pyk.Key.esc:
+        quit_flag = True
 
 mouse = pym.Controller()
 keyboard = pyk.Controller()
 
-with open(JOBLIST_NAME) as joblist_file:
+#core loop
+with open(JOBLIST_NAME) as joblist_file, pyk.Listener(on_press = on_press) as stop:
     joblist = json.load(joblist_file)
     for job in joblist['jobs']:
         with open(job['procedure']) as procedure:
             for line in procedure:
+                if quit_flag:
+                    break
                 print(line)
                 match line.split():
                     case ['type', keystroke]:

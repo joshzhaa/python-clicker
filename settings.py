@@ -1,7 +1,7 @@
 #creates json file with settings for multiple clicker runs
 import json
 from re import I
-from threading import local
+#from threading import local
 from time import localtime, strftime
 
 job_type = 'multiple simulation setup'
@@ -13,8 +13,9 @@ joblist = {
     'jobs': []
 }
 
-def add_job(procedure = 'test.txt', vtk = 'M0', flow = 're150', mesh_size = 0, curvature_refinement = False, 
-    num_steps = 0, step_size = 0, residual_control = False, step_construction = False, influx_coefficient = 0):
+def add_job(procedure = 'mesh.txt', vtk = 'M1.vtk', flow = 're150.flow', mesh_size = 0.5, curvature_refinement = False, upper_param = 0.15,
+    lower_param = 0.1, num_steps = 70000, step_size = 0.0001, viscosity = 1, density = 0.00094, restart_steps = 1000, residual_control = True,
+    step_construction = 2, influx_coefficient = 0.8):
     joblist['jobs'].append(
         {
             'procedure': procedure,
@@ -22,11 +23,16 @@ def add_job(procedure = 'test.txt', vtk = 'M0', flow = 're150', mesh_size = 0, c
             'flow': flow,
             'mesh': { 
                 'mesh_size': mesh_size,
-                'curvature_refinement': curvature_refinement
+                'curvature_refinement': curvature_refinement,
+                'upper_param': upper_param,
+                'lower_param': lower_param
             },
             'solver': {
                 'num_steps': num_steps,
                 'step_size': step_size,
+                'viscosity': viscosity,
+                'density': density,
+                'restart_steps': restart_steps,
                 'residual_control': residual_control,
                 'step_construction': step_construction,
                 'influx_coefficient': influx_coefficient

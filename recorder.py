@@ -21,7 +21,7 @@ def button_to_string(button):
 def insert_text(key):
     global typing_flag
     match key:
-        case pyk.Key.enter:
+        case pyk.Key.ctrl_r:
             print('')
             typing_flag = False
         case pyk.Key.space:

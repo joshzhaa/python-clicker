@@ -1,0 +1,62 @@
+COMMENT open file
+left_click 65 58
+type Key.enter
+special_action short_sleep
+COMMENT close images
+left_click 1282 609
+left_click 1191 226
+left_click 1254 213
+left_click 1257 239
+COMMENT select vtk
+right_click 281 211
+left_click 374 483
+special_action filename geometries
+type Key.enter
+left_click 286 496
+special_action filename vtk
+type Key.enter
+COMMENT creat loft and blend
+right_click 225 229
+left_click 310 438
+right_click 240 207
+left_click 337 419
+left_click 62 208
+left_click 102 268
+left_click 83 250
+right_click 173 242
+left_click 252 474
+left_click 171 225
+left_click 1462 166
+COMMENT input mesh settings
+left_click 1424 270
+left_click 832 181
+special_action ctrl_a
+type Key.backspace
+special_action parameter mesh mesh_size
+special_action toggle mesh curvature_refinement 697 228
+left_click 1207 259
+special_action ctrl_a
+type Key.backspace
+special_action parameter mesh upper_param
+left_click 1208 290
+special_action ctrl_a
+type Key.backspace
+special_action parameter mesh lower_param
+COMMENT other options not sure what they are
+left_click 802 363
+left_click 809 405
+special_action double_click 870 411
+type Key.backspace
+type '0'
+type '.'
+type '2'
+type '5'
+special_action double_click 886 442
+type Key.backspace
+type '0'
+type '.'
+type '8'
+left_click 1089 866
+COMMENT click mesh button
+left_click 1435 970
+special_action long_sleep

@@ -54,17 +54,30 @@ def type(string):
 
 #controls keyboard to type filename
 def fill(arg):
-    for char in arg:
+    for char in str(arg):
         time.sleep(TYPE_DELAY)
         keyboard.press(char)
         keyboard.release(char)
+
+def toggle(path, name, x, y):
+    if (job[path][name]):
+        click(pym.Button.left, x, y)
+
+def ctrl_a():
+    keyboard.press(pyk.Key.ctrl)
+    keyboard.press('a')
+    keyboard.release(pyk.Key.ctrl)
+    keyboard.release('a')
 
 #dictionary of supported special actions
 SPECIAL_ACTIONS = {
     'double_click': lambda x, y: click(pym.Button.left, x, y, 2),
     'long_sleep': lambda: time.sleep(LONG_SLEEP),
     'short_sleep': lambda: time.sleep(SHORT_SLEEP),
-    'fill': lambda x: fill(job[x]) if x == 'vtk' or x == 'flow' else fill(x) #arg can be geometries, flows, vtk, or flow
+    'filename': lambda x: fill(job[x]) if x == 'vtk' or x == 'flow' else fill(x), #arg can be geometries, flows, vtk, or flow
+    'toggle': toggle, #syntax is toggle mesh|solver param_name x y
+    'parameter': lambda path, name: fill(job[path][name]),
+    'ctrl_a': ctrl_a
 }
 
 quit_flag = False

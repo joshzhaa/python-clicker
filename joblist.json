@@ -1,6 +1,6 @@
 {
-    "type": "multiple simulation setup",
-    "time": "2022-07-16 10:32:58",
+    "id": "multiple simulation setup",
+    "time": "2022-07-22 19:04:06",
     "jobs": [
         {
             "procedure": "mesh.txt",
@@ -10,9 +10,40 @@
                 "mesh_size": 0.5,
                 "curvature_refinement": false,
                 "upper_param": 0.15,
-                "lower_param": 0.1
+                "lower_param": 0.1,
+                "dropdown_option": 0,
+                "thickness": 0.25,
+                "gradation": 0.8,
+                "mesh_name": "m1"
             },
             "solver": {
+                "pressure": 10000,
+                "num_steps": 70000,
+                "step_size": 0.0001,
+                "viscosity": 1,
+                "density": 0.00094,
+                "restart_steps": 1000,
+                "residual_control": true,
+                "step_construction": 2,
+                "influx_coefficient": 0.8
+            }
+        },
+        {
+            "procedure": "mesh.txt",
+            "vtk": "M2.vtk",
+            "flow": "re175.flow",
+            "mesh": {
+                "mesh_size": 0.5,
+                "curvature_refinement": false,
+                "upper_param": 0.15,
+                "lower_param": 0.1,
+                "dropdown_option": 0,
+                "thickness": 0.25,
+                "gradation": 0.8,
+                "mesh_name": "m2"
+            },
+            "solver": {
+                "pressure": 10000,
                 "num_steps": 70000,
                 "step_size": 0.0001,
                 "viscosity": 1,

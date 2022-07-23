@@ -11,10 +11,11 @@ import time
 #JOBLIST_NAME = input('Enter name of joblist json file: ')
 JOBLIST_NAME = 'joblist.json'
 
-LONG_SLEEP = 180
+LONG_SLEEP = 60
 SHORT_SLEEP = 10
+MIRCO_SLEEP = 1
 CLICK_DELAY = 1.2
-TYPE_DELAY = 0.2
+TYPE_DELAY = 0.4
 
 def string_to_button(id):
     match id:
@@ -72,12 +73,14 @@ def ctrl_a():
 #dictionary of supported special actions
 SPECIAL_ACTIONS = {
     'double_click': lambda x, y: click(pym.Button.left, x, y, 2),
-    'long_sleep': lambda: time.sleep(LONG_SLEEP),
+    'long_sleep': lambda: time.sleep(LONG_SLEEP), 
     'short_sleep': lambda: time.sleep(SHORT_SLEEP),
+    'micro_sleep': lambda: time.sleep(MIRCO_SLEEP),
     'filename': lambda x: fill(job[x]) if x == 'vtk' or x == 'flow' else fill(x), #arg can be geometries, flows, vtk, or flow
     'toggle': toggle, #syntax is toggle mesh|solver param_name x y
     'parameter': lambda path, name: fill(job[path][name]),
-    'ctrl_a': ctrl_a
+    'ctrl_a': ctrl_a,
+    'dropdown': lambda path, name: [type('Key.down') for i in range(job[path][name])]
 }
 
 quit_flag = False

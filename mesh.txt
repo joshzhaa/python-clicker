@@ -44,19 +44,129 @@ type Key.backspace
 special_action parameter mesh lower_param
 COMMENT other options not sure what they are
 left_click 802 363
-left_click 809 405
+special_action dropdown mesh dropdown_option
+type Key.enter
 special_action double_click 870 411
 type Key.backspace
-type '0'
-type '.'
-type '2'
-type '5'
+special_action parameter mesh thickness
 special_action double_click 886 442
 type Key.backspace
-type '0'
-type '.'
-type '8'
+special_action parameter mesh gradation
 left_click 1089 866
 COMMENT click mesh button
 left_click 1435 970
 special_action long_sleep
+special_action long_sleep
+special_action long_sleep
+special_action double_click 190 248
+special_action parameter mesh mesh_name
+type Key.enter
+COMMENT create solver
+left_click 1639 167
+left_click 204 224
+left_click 1878 234
+left_click 1878 234
+left_click 1878 234
+left_click 1811 234
+left_click 1875 201
+left_click 1865 233
+left_click 1865 233
+left_click 1865 233
+left_click 1421 234
+special_action micro_sleep
+special_action short_sleep
+left_click 1870 266
+left_click 1866 266
+left_click 948 537
+left_click 1005 600
+left_click 1450 501
+left_click 1513 506
+left_click 965 342
+left_click 1023 748
+left_click 1468 709
+left_click 320 73
+left_click 284 497
+special_action filename flows
+type Key.enter
+special_action filename flow
+type Key.enter
+left_click 1866 265
+left_click 1139 453
+left_click 948 452
+type Key.down
+type Key.down
+type Key.enter
+left_click 1776 798
+left_click 1862 267
+left_click 898 498
+left_click 1004 604
+left_click 1533 361
+type Key.backspace
+special_action parameter solver pressure
+left_click 1446 795
+left_click 1514 793
+left_click 962 370
+left_click 1023 747
+left_click 1763 229
+left_click 1868 267
+COMMENT enter solver params
+left_click 1682 380
+type Key.backspace
+special_action parameter solver num_steps
+left_click 1702 396
+type Key.backspace
+special_action parameter solver step_size
+left_click 1681 435
+type Key.backspace
+special_action parameter solver viscosity
+left_click 1687 448
+type Key.backspace
+special_action parameter solver density
+left_click 1684 513
+type Key.backspace
+special_action parameter solver restart_steps
+left_click 1691 534
+special_action toggle solver residual_control 1670 534
+left_click 1675 592
+type Key.backspace
+special_action parameter solver step_construction
+left_click 1690 624
+type Key.backspace
+special_action parameter solver influx_coefficient
+COMMENT create study
+left_click 1878 233
+left_click 1878 233
+left_click 1878 233
+left_click 1812 232
+left_click 1822 231
+left_click 1865 266
+left_click 1524 434
+left_click 1732 747
+left_click 334 73
+left_click 321 499
+special_action ctrl_a
+type Key.backspace
+special_action filename saves
+type Key.enter
+right_click 785 301
+left_click 663 581
+left_click 911 584
+special_action filename flow
+type '-'
+special_action filename vtk
+type Key.enter
+left_click 246 504
+special_action ctrl_a
+type Key.backspace
+special_action filename flow
+type '-'
+special_action filename vtk
+type Key.enter
+left_click 788 526
+special_action long_sleep
+special_action long_sleep
+special_action long_sleep
+special_action long_sleep
+left_click 277 58
+left_click 1059 550
+special_action short_sleep

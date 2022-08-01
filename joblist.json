@@ -3,7 +3,7 @@
     "time": "2022-07-22 19:04:06",
     "jobs": [
         {
-            "procedure": "mesh.txt",
+            "procedure": "test.txt",
             "vtk": "M1.vtk",
             "flow": "re150.flow",
             "mesh": {

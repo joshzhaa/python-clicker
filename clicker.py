@@ -70,6 +70,12 @@ def ctrl_a():
     keyboard.release(pyk.Key.ctrl)
     keyboard.release('a')
 
+def read(filename):
+    with open(filename) as file:
+        for line in file:
+            pass
+        print('this is the last line: ', line)
+
 #dictionary of supported special actions
 SPECIAL_ACTIONS = {
     'double_click': lambda x, y: click(pym.Button.left, x, y, 2),
@@ -80,7 +86,8 @@ SPECIAL_ACTIONS = {
     'toggle': toggle, #syntax is toggle mesh|solver param_name x y
     'parameter': lambda path, name: fill(job[path][name]),
     'ctrl_a': ctrl_a,
-    'dropdown': lambda path, name: [type('Key.down') for i in range(job[path][name])]
+    'dropdown': lambda path, name: [type('Key.down') for i in range(job[path][name])],
+    'read': read
 }
 
 quit_flag = False
